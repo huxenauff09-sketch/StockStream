@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockStream - View Others</title>
+    <link rel="stylesheet" href="../components/header-styles.css">
+    <link rel="stylesheet" href="./css/viewothers.css">
+</head>
+<body>
+    <!-- Header Container -->
+    <div id="headerContainer"></div>
+
+    <!-- Page Content -->
+    <div class="page-content">
+        <h1 class="page-title">View Other Users</h1>
+
+        <div class="search-bar">
+            <input 
+                type="text" 
+                class="search-input" 
+                id="searchInput" 
+                placeholder="Search users by name or email..."
+            >
+        </div>
+
+        <div class="users-grid" id="usersGrid">
+            <div class="empty-state">
+                <div class="empty-state-icon">👥</div>
+                <p>Loading users...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load page script -->
+    <script src="./js/viewothers.js"></script>
+    <!-- Load header script -->
+    <script src="../components/header-script.js"></script>
+</body>
+</html>
