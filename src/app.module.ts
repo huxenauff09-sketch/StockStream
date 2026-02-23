@@ -1,29 +1,26 @@
 import { Module } from '@nestjs/common';
-import { UsersController } from './users/users.controller';
-import { UsersService } from './users/users.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Users } from './users/users.entity';
-import { Task } from './tasks/task.entity';
-import { TaskModule } from './tasks/task.module';
-
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3307,
-      username: 'root',
-      password: '',
-      database: 'market',
-      entities: [Users, Task],
-      synchronize: true,
+      url: process.env.MYSQL_URL, 
+      autoLoadEntities: true,
+      synchronize: true, 
     }),
-    TypeOrmModule.forFeature([Users]),
-    TaskModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+      serveRoot: '/',
+    }),
+    UsersModule,
   ],
-
-  controllers: [UsersController],
-  providers: [UsersService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
